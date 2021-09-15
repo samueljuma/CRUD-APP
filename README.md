@@ -3,5 +3,5 @@
 > It is solution for the cohort II JTPs for the Digital Apprenticeship Program
 
 ## Screenshots
-|<img src="screenshots/1.PNG" width=250/>|
+|<img src="screenshots/1.PNG"/>|
 |:--:|
