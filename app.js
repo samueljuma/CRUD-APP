@@ -35,9 +35,25 @@ app.get('/',(req, res) => {
     let query = connection.query(sql, (err, rows) => {
         if(err) throw err;
         res.render('writer_index', {
-            title : 'CRUD Operation using NodeJS / ExpressJS / MySQL',
+            title : 'CRUD Application ExpressJS / MySQL',
             writers : rows
         });
+    });
+});
+
+
+app.get('/add',(req, res) => {
+    res.render('writer_add', {
+        title : 'CRUD Operation using NodeJS / ExpressJS / MySQL'
+    });
+});
+ 
+app.post('/save',(req, res) => { 
+    let data = {name: req.body.name, phone: req.body.phone, residence: req.body.residence, tasks_handled: req.body.tasks_handled};
+    let sql = "INSERT INTO writers SET ?";
+    let query = connection.query(sql, data,(err, results) => {
+      if(err) throw err;
+      res.redirect('/');
     });
 });
 
