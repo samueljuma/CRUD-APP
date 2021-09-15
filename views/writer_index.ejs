@@ -31,8 +31,8 @@
                 <td><%= writer.residence %></td>
                 <td><%= writer.tasks_handled %></td>
                 <td>
-                    <a href="edit/<%= writer.id %>" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="delete/<%= writer.id %>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="edit/<%= writer.writer_id %>" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="/delete/<%= writer.writer_id %>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <% }); %>

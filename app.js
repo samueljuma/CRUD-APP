@@ -44,7 +44,7 @@ app.get('/',(req, res) => {
 
 app.get('/add',(req, res) => {
     res.render('writer_add', {
-        title : 'CRUD Operation using NodeJS / ExpressJS / MySQL'
+        title : 'CRUD Application ExpressJS / MySQL'
     });
 });
  
@@ -56,6 +56,38 @@ app.post('/save',(req, res) => {
       res.redirect('/');
     });
 });
+
+
+app.get('/edit/:writerId',(req, res) => {
+    const writerId = req.params.writerId;
+    let sql = `Select * from writers where writer_id = ${writerId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.render('writer_edit', {
+            title : 'CRUD Operation using NodeJS / ExpressJS / MySQL',
+            writer : result[0]
+        });
+    });
+});
+
+app.post('/update',(req, res) => {
+    const writerId = req.body.writer_id;
+    let sql = "update writers SET name='"+req.body.name+"', phone='"+req.body.phone+"', residence='"+req.body.residence+"', tasks_handled='"+req.body.tasks_handled+"', where writer_id ="+writerId;
+    let query = connection.query(sql,(err, results) => {
+      if(err) throw err;
+      res.redirect('/');
+    });
+});
+
+app.get('/delete/:writerId',(req, res) => {
+    const writerId = req.params.writerId;
+    let sql = `DELETE from writers where writer_id = ${writerId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.redirect('/');
+    });
+});
+ 
 
 
 // Server Listening
