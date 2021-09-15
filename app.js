@@ -44,7 +44,7 @@ app.get('/',(req, res) => {
 
 app.get('/add',(req, res) => {
     res.render('writer_add', {
-        title : 'CRUD Application ExpressJS / MySQL'
+        title : 'Add New Entry'
     });
 });
  
@@ -64,7 +64,7 @@ app.get('/edit/:writerId',(req, res) => {
     let query = connection.query(sql,(err, result) => {
         if(err) throw err;
         res.render('writer_edit', {
-            title : 'CRUD Operation using NodeJS / ExpressJS / MySQL',
+            title : 'Edit Fields',
             writer : result[0]
         });
     });
