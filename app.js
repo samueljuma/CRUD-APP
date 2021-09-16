@@ -14,6 +14,7 @@ const connection=mysql.createConnection({
     database:'exp_crud'
 });
 
+// DATABASE CONNECTION
 connection.connect(function(error){
     if(!!error) console.log(error);
     else console.log('Database Connected!');
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
+// READ ALL ENTRYS
 app.get('/',(req, res) => {
     // res.send('CRUD Operation using NodeJS / ExpressJS / MySQL');
     let sql = "SELECT * FROM writers";
@@ -41,7 +42,7 @@ app.get('/',(req, res) => {
     });
 });
 
-
+// CREATE A NEW ENTRY
 app.get('/add',(req, res) => {
     res.render('writer_add', {
         title : 'Add New Entry'
@@ -58,6 +59,7 @@ app.post('/save',(req, res) => {
 });
 
 
+//EDIT AND UPDATE ENTRY
 app.get('/edit/:writerId',(req, res) => {
     const writerId = req.params.writerId;
     let sql = `Select * from writers where writer_id = ${writerId}`;
@@ -72,13 +74,15 @@ app.get('/edit/:writerId',(req, res) => {
 
 app.post('/update',(req, res) => {
     const writerId = req.body.writer_id;
-    let sql = "UPDATE writers SET name='"+req.body.name+"', phone='"+req.body.phone+"', residence='"+req.body.residence+"', tasks_handled='"+req.body.tasks_handled+"', where writer_id ="+writerId;
+    let sql = "UPDATE writers SET name='"+req.body.name+"', phone='"+req.body.phone+"', residence='"+req.body.residence+"', tasks_handled='"+req.body.tasks_handled+"' where writer_id ="+writerId;
     let query = connection.query(sql,(err, results) => {
       if(err) throw err;
       res.redirect('/');
     });
 });
 
+
+// DELETE ENTRY
 app.get('/delete/:writerId',(req, res) => {
     const writerId = req.params.writerId;
     let sql = `DELETE from writers where writer_id = ${writerId}`;
@@ -87,7 +91,7 @@ app.get('/delete/:writerId',(req, res) => {
         res.redirect('/');
     });
 });
- 
+
 
 
 // Server Listening
