@@ -72,7 +72,7 @@ app.get('/edit/:writerId',(req, res) => {
 
 app.post('/update',(req, res) => {
     const writerId = req.body.writer_id;
-    let sql = "update writers SET name='"+req.body.name+"', phone='"+req.body.phone+"', residence='"+req.body.residence+"', tasks_handled='"+req.body.tasks_handled+"', where writer_id ="+writerId;
+    let sql = "UPDATE writers SET name='"+req.body.name+"', phone='"+req.body.phone+"', residence='"+req.body.residence+"', tasks_handled='"+req.body.tasks_handled+"', where writer_id ="+writerId;
     let query = connection.query(sql,(err, results) => {
       if(err) throw err;
       res.redirect('/');
